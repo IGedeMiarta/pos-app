@@ -14,4 +14,11 @@ class Product extends Model
     public function kategori(){
         return $this->belongsTo(Categories::class,'category_id');
     }
+    public function temp(){
+        return $this->hasMany(temp::class);
+    }
+
+    public function order(){
+        return $this->hasMany(OrderDetail::class);
+    }
 }

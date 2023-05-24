@@ -16,14 +16,10 @@ return new class extends Migration
             $table->string('reference')->unique();
             $table->date('date');
             $table->bigInteger('supplier_id');
-            $table->integer('tax_percentage');
-            $table->integer('tax_amount');
-            $table->integer('discount_percentage');
             $table->integer('discount_amount');
             $table->integer('shipping_amount');
-            $table->integer('total_amount');
-            $table->integer('paid_amount');
-            $table->integer('due_amount');
+            $table->integer('sub_total');
+            $table->integer('total');
             $table->integer('status');
             $table->integer('payment_status');
             $table->integer('payment_method');

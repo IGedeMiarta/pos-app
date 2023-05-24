@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{ asset('css') }}/sweetalert2.min.css">
     <link rel="stylesheet" href="{{ asset('css') }}/dropify.min.css">
     <title>{{ $title ?? ':)' }} - {{ env('APP_NAME') }}</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 
 <body>
@@ -173,6 +174,13 @@
     <script src="{{ asset('thame') }}/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('thame') }}/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
     <script src="{{ asset('js') }}/dropify.min.js"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     @stack('script')
     <script>
         const Toast = Swal.mixin({

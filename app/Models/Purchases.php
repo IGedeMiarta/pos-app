@@ -12,4 +12,7 @@ class Purchases extends Model
     public function details(){
         return $this->hasMany(PurchasesDetail::class);
     }
+    public function sup(){
+        return $this->belongsTo(Supplier::class,'supplier_id');
+    }
 }

@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\pdfController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchasesController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\tempController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,11 +23,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return redirect('home');
 });
-Route::get('home',function(){
-    return view('main.dashboard');
-});
+Route::get('home',[HomeController::class,'index']);
 Route::resource('kategori',KategoriController::class);
 Route::get('tambah-produk',[ProductController::class,'tambah']);
 Route::resource('produk',ProductController::class);
@@ -32,3 +34,11 @@ Route::resource('suppliers',SupplierController::class);
 
 Route::resource('pembelian',PurchasesController::class);
 Route::get('tambah-pembelian',[PurchasesController::class,'create']);
+
+Route::resource('order',OrderController::class);
+Route::get('tambah-order',[OrderController::class,'create']);
+
+Route::post('temp',[tempController::class,'push'])->name('temp');
+Route::get('temp-table/{id}',[tempController::class,'table']);
+
+Route::get('pdf/{id}',[pdfController::class,'pdf']);

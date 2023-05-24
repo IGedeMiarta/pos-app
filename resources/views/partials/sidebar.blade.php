@@ -18,7 +18,16 @@
                  <div class="menu-title">Dashboard</div>
              </a>
          </li>
+
          <li class="menu-label">Program & Feature</li>
+         <li>
+             <a href="#">
+                 <div class="parent-icon"><i class="bx bx-dollar-circle"></i></div>
+                 <div class="menu-title">
+                     POS
+                 </div>
+             </a>
+         </li>
          <li>
              <a href="javascript:;" class="has-arrow">
                  <div class="parent-icon"><i class='bx bx-shopping-bag'></i>
@@ -37,6 +46,40 @@
                  </li>
              </ul>
          </li>
+
+         <li>
+             <a href="javascript:;" class="has-arrow">
+                 <div class="parent-icon"><i class='bx bx-cart'></i>
+                 </div>
+                 <div class="menu-title">Pembelian</div>
+             </a>
+             <ul>
+                 <li>
+                     <a href="{{ url('tambah-pembelian') }}"><i class="bx bx-right-arrow-alt"></i>
+                         Buat Pembelian
+                     </a>
+                 </li>
+                 <li>
+                     <a href="{{ url('pembelian') }}"><i class="bx bx-right-arrow-alt"></i>All Pembelian</a>
+                 </li>
+             </ul>
+         </li>
+         <li>
+             <a href="javascript:;" class="has-arrow">
+                 <div class="parent-icon"><i class='bx bx-message-square-edit'></i>
+                 </div>
+                 <div class="menu-title">Order</div>
+             </a>
+             <ul>
+                 <li>
+                     <a href="{{ url('tambah-order') }}"><i class="bx bx-right-arrow-alt"></i>Buat Order</a>
+                 </li>
+                 <li>
+                     <a href="{{ url('order') }}"><i class="bx bx-right-arrow-alt"></i>All Order</a>
+                 </li>
+             </ul>
+         </li>
+
          <li>
              <a class="has-arrow" href="javascript:;">
                  <div class="parent-icon"><i class='bx bx-user-circle'></i>
@@ -49,36 +92,6 @@
                  </li>
                  <li>
                      <a href="{{ url('suppliers') }}"><i class="bx bx-right-arrow-alt"></i>Suppliers</a>
-                 </li>
-             </ul>
-         </li>
-         <li>
-             <a href="javascript:;" class="has-arrow">
-                 <div class="parent-icon"><i class='bx bx-shopping-bag'></i>
-                 </div>
-                 <div class="menu-title">Pembelian</div>
-             </a>
-             <ul>
-                 <li>
-                     <a href="{{ url('tambah-pembelian') }}"><i class="bx bx-right-arrow-alt"></i>Tambah Pembelian</a>
-                 </li>
-                 <li>
-                     <a href="{{ url('produk') }}"><i class="bx bx-right-arrow-alt"></i>All Produk</a>
-                 </li>
-             </ul>
-         </li>
-         <li>
-             <a href="javascript:;" class="has-arrow">
-                 <div class="parent-icon"><i class='bx bx-message-square-edit'></i>
-                 </div>
-                 <div class="menu-title">Pemesanan </div>
-             </a>
-             <ul>
-                 <li>
-                     <a href="{{ url('tambah-pembelian') }}"><i class="bx bx-right-arrow-alt"></i>Tambah Pembelian</a>
-                 </li>
-                 <li>
-                     <a href="{{ url('produk') }}"><i class="bx bx-right-arrow-alt"></i>All Produk</a>
                  </li>
              </ul>
          </li>

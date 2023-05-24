@@ -16,27 +16,28 @@
     <!--end breadcrumb-->
 @endpush
 @section('content')
-    <form action="{{ url('pembelian') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('order') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card">
             <div class="card-body row">
-                <div class="mb-3 col-md-4">
+                <div class="mb-3 col-md-3">
                     <label for="name" class="form-label">Reference<span class="text-danger">*</span></label>
                     <input type="text"
                         class="form-control ref @error('reference')
                             is-invalid
                         @enderror"
-                        name="reference" value="{{ ref('PR') }}" readonly>
+                        name="reference" value="{{ ref('OD') }}" readonly>
                     @error('reference')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="mb-3 col-md-4">
-                    <label for="name" class="form-label">Supplier<span class="text-danger">*</span></label>
-                    <select name="supplier_id" class="form-select custId">
-                        <option selected disabled>Pilih Supplier</option>
-                        @foreach ($supplier as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}
+                <div class="mb-3 col-md-3">
+                    <label for="name" class="form-label">Customer<span class="text-danger">*</span></label>
+                    <select name="customer_id" class="form-select custId">
+                        <option selected disabled>Pilih Customer</option>
+                        @foreach ($cust as $item)
+                            <option value="{{ $item->id }}" data-name="{{ $item->name }}"
+                                data-phone="{{ $item->phone }}" data-address="{{ $item->address }}">{{ $item->name }}
                             </option>
                         @endforeach
                     </select>
@@ -45,14 +46,25 @@
                 <input type="hidden" id="custPhone">
                 <input type="hidden" id="custAddress">
 
-                <div class="mb-3 col-md-4">
-                    <label for="name" class="form-label">Date<span class="text-danger">*</span></label>
+                <div class="mb-3 col-md-3">
+                    <label for="name" class="form-label">Order Date<span class="text-danger">*</span></label>
                     <input type="date"
                         class="form-control order_date @error('date')
                             is-invalid
                         @enderror"
                         name="date" value="{{ old('date') }}">
                     @error('date')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="mb-3 col-md-3">
+                    <label for="name" class="form-label">Due Date<span class="text-danger">*</span></label>
+                    <input type="date"
+                        class="form-control due_date @error('due_date')
+                            is-invalid
+                        @enderror"
+                        name="due_date" value="{{ old('due_date') }}">
+                    @error('due_date')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
@@ -69,7 +81,6 @@
                         @endforeach
                     </select>
                     <input type="number" class="form-control Qty" placeholder="qty">
-                    <input type="number" class="form-control Harga" placeholder="Price">
                     <button type="button" id="btnSelect" class="input-group-text btn-primary">Tambah <i
                             class="bx bx-plus"></i></button>
                 </div>
@@ -96,7 +107,7 @@
                             <th class="price"></th>
                             <th class="total text-end"></th>
                         </tr>
-                        <input type="hidden" class="totalVal" name="sub_total">
+                        <input type="hidden" class="totalVal">
                     </tfoot>
                 </table>
             </div>
@@ -105,40 +116,43 @@
             <div class="card-body row">
                 <div class="col-md-3">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Discount</label>
+                        <label for="name" class="form-label">Discount <span>(%)</span></label>
                         <input type="number"
-                            class="form-control dc @error('discount_amount')
+                            class="form-control dc @error('discount_percentage')
                             is-invalid
                         @enderror"
-                            name="discount_amount" value="{{ old('discount_amount') }}">
+                            name="discount_percentage" value="{{ old('discount_percentage') }}">
                         @error('date')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label">Ongkir</label>
+                        <label for="name" class="form-label">Discount Amount</label>
                         <input type="number"
-                            class="form-control ongkir @error('shipping_amount')
+                            class="form-control dc_amount @error('discount_amount')
                             is-invalid
                         @enderror"
-                            name="shipping_amount" value="{{ old('shipping_amount') }}">
+                            name="discount_amount" value="{{ old('discount_amount') }}" readonly>
                         @error('date')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Note</label>
+                        <textarea name="note" class="form-control" rows="5"></textarea>
                     </div>
 
                 </div>
                 <div class="col-md-3">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Status Bayar</label>
-                        <select name="payment_status" class="form-select">
-                            <option value="1">Lunas</option>
-                            <option value="2">Kredit</option>
-                        </select>
+                        <label for="name" class="form-label">DP</label>
+                        <input type="number" name="dp" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label">Metode Bayar</label>
-                        <select name="payment_method" class="form-select">
+                        <label for="name" class="form-label">Metode Pembayaran</label>
+                        <select name="method" class="form-select">
                             <option value="1">Cash</option>
                             <option value="2">Transfer</option>
                         </select>
@@ -147,18 +161,12 @@
                 </div>
                 <div class="col-md-3">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Note</label>
-                        <textarea name="note" class="form-control" rows="5"></textarea>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="mb-3">
-                        <h4>Total:</h4>
+                        <h4>Total Order:</h4>
                         <h1 class="display-5 text-end" id="TotalOrder"></h1>
                         <input type="number" name="total" class="TotalOrder" hidden>
                     </div>
                     <div class="d-grid gap-2">
-                        <button class="btn btn-primary" type="submit">Simpan Pembelian</button>
+                        <button class="btn btn-primary" type="submit">Process Order</button>
                     </div>
                 </div>
 
@@ -212,7 +220,6 @@
             function clearInp() {
                 $('.ProductId').val('');
                 $('.Qty').val('');
-                $('.Harga').val('');
             }
 
             $('#btnSelect').on('click', function(e) {
@@ -220,16 +227,15 @@
                 $('#btnSelect').attr('disabled', true);
                 const product_id = $('.ProductId').val();
                 const qty = $('.Qty').val();
-                const harga = $('.Harga').val();
                 const ref = $('.ref').val();
+
                 $.ajax({
                     url: "{{ route('temp') }}", // Get form action URL
                     method: "POST", // Get form method (POST)
                     data: {
                         product_id: product_id,
                         qty: qty,
-                        ref: ref,
-                        harga: harga
+                        ref: ref
                     }, // Set form data
                     success: function(response) {
                         // Handle success response
@@ -280,13 +286,17 @@
             }
             $('.dc').on('keyup', delay(function() {
                 var val = parseInt($(this).val());
-                $('.dc_amount').val(val);
+                var total = parseInt($('.totalVal').val());
+                var dc = (val * total) / 100;
+                $('.dc_amount').val(dc);
                 totalOrder();
             }, 500));
 
-            $('.ongkir').on('keyup', delay(function() {
+            $('.tax').on('keyup', delay(function() {
                 var val = parseInt($(this).val());
-                $('.tax_am').val(val);
+                var total = parseInt($('.totalVal').val());
+                var dc = (val * total) / 100;
+                $('.tax_am').val(dc);
                 totalOrder();
 
             }, 500));
@@ -294,14 +304,14 @@
             totalOrder();
 
             function totalOrder() {
-                var total = $('.totalVal').val() == '' ? 0 : $('.totalVal').val();
-                var dc = $('.dc').val() == '' ? 0 : $('.dc').val();
-                var ongkir = $('.ongkir').val() == '' ? 0 : $('.ongkir').val();
-                var totalD = parseInt(total) - parseInt(dc) - parseInt(ongkir);
-
+                var total = $('.totalVal').val();
+                var dc = $('.dc_amount').val() == '' ? 0 : $('.dc_amount').val();
+                var dc_p = $('.dc').val() == '' ? 0 : $('.dc').val();
+                var totalD = parseInt(total) - parseInt(dc);
                 $('#TotalOrder').html('Rp ' + formatNumber(totalD));
                 $('.TotalOrder').val(totalD);
                 $('.totalVal').html(formatNumber(totalD));
+                $('.dc').html(formatNumber(dc_p) + '%')
                 $('.dc_am').html(formatNumber(dc))
             }
 

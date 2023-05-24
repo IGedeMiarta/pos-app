@@ -13,6 +13,20 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('reference')->unique();
+            $table->date('date');
+            $table->date('due_date');
+            $table->bigInteger('customer_id');
+            $table->integer('discount_percentage')->nullable();
+            $table->integer('discount_amount')->nullable();
+            $table->integer('shipping_amount');
+            $table->integer('total_amount');
+            $table->integer('paid_amount');
+            $table->integer('due_amount');
+            $table->integer('status');
+            $table->integer('payment_status');
+            $table->integer('payment_method');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
