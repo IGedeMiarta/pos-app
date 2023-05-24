@@ -233,6 +233,13 @@
                     }, // Set form data
                     success: function(response) {
                         // Handle success response
+                        if (response.status == 0) {
+                            console.log(response.msg);
+                            Toast.fire({
+                                text: response.msg,
+                                icon: "error"
+                            });
+                        }
                         reloadTable();
                         clearInp();
                         $('#btnSelect').attr('disabled', false);
@@ -297,7 +304,7 @@
                 var total = $('.totalVal').val() == '' ? 0 : $('.totalVal').val();
                 var dc = $('.dc').val() == '' ? 0 : $('.dc').val();
                 var ongkir = $('.ongkir').val() == '' ? 0 : $('.ongkir').val();
-                var totalD = parseInt(total) - parseInt(dc) - parseInt(ongkir);
+                var totalD = parseInt(total) - parseInt(dc) + parseInt(ongkir);
 
                 $('#TotalOrder').html('Rp ' + formatNumber(totalD));
                 $('.TotalOrder').val(totalD);

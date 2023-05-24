@@ -11,6 +11,10 @@ class tempController extends Controller
 {
     public function push(Request $request){
         $product = Product::findorfail($request->product_id);
+          //update stock 
+        if($product->product_quantity <  $request->qty){
+            return response()->json(['status'=>0,'msg'=>'Product Out Of Stock']);
+        }
         DB::beginTransaction();
         try {
             $price = $request->harga?? $product->product_price;

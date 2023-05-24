@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\PosTransaction;
+use App\Models\PosTransactionDetails;
 use App\Models\Purchases;
 use App\Models\PurchasesDetail;
 use Illuminate\Http\Request;
@@ -31,5 +33,11 @@ class pdfController extends Controller
             return view('pdf.pdf',$data);
 
         }
+    }
+    public function nota($ref){
+        $trx = PosTransaction::with(['cust'])->where('reference',$ref)->first();
+        $data['data'] = $trx;
+        $data['detail'] = PosTransactionDetails::with(['produk'])->where('pos_id',$trx->id)->get();
+        return view('pdf.nota',$data);
     }
 }

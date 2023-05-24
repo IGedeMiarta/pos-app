@@ -239,6 +239,12 @@
                     }, // Set form data
                     success: function(response) {
                         // Handle success response
+                        if (response.status == 0) {
+                            Toast.fire({
+                                text: response.msg,
+                                icon: "error"
+                            });
+                        }
                         reloadTable();
                         clearInp();
                         $('#btnSelect').attr('disabled', false);

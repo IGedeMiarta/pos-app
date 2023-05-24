@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchasesController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\tempController;
+use App\Http\Controllers\TrxController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +39,12 @@ Route::get('tambah-pembelian',[PurchasesController::class,'create']);
 Route::resource('order',OrderController::class);
 Route::get('tambah-order',[OrderController::class,'create']);
 
+Route::get('pos',[TrxController::class,'index']);
+Route::post('pos',[TrxController::class,'store']);
+
+
 Route::post('temp',[tempController::class,'push'])->name('temp');
 Route::get('temp-table/{id}',[tempController::class,'table']);
 
 Route::get('pdf/{id}',[pdfController::class,'pdf']);
+Route::get('nota/{id}',[pdfController::class,'nota']);

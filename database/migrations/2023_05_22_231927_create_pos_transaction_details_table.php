@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('pos_transaction_details', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('pos_id');
+            $table->bigInteger('product_id');
+            $table->integer('quantity');
+            $table->integer('price');
+            $table->integer('sub_total');
             $table->timestamps();
         });
     }

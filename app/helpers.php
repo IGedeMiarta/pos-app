@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Order;
+use App\Models\PosTransaction;
 use App\Models\Purchases;
 use App\Models\temp;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +16,8 @@ function ref($type){
         $model = Purchases::class;
     }elseif($type == "OD"){
         $model = Order::class;
+    }elseif($type == 'TRX'){
+        $model = PosTransaction::class;
     }else{
         return 00000;
     }

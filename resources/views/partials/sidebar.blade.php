@@ -21,7 +21,7 @@
 
          <li class="menu-label">Program & Feature</li>
          <li>
-             <a href="#">
+             <a href="{{ url('pos') }}">
                  <div class="parent-icon"><i class="bx bx-dollar-circle"></i></div>
                  <div class="menu-title">
                      POS
