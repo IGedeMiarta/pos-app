@@ -3,6 +3,7 @@
 use App\Models\Order;
 use App\Models\PosTransaction;
 use App\Models\Purchases;
+use App\Models\Spending;
 use App\Models\temp;
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Node\Expr\FuncCall;
@@ -18,6 +19,8 @@ function ref($type){
         $model = Order::class;
     }elseif($type == 'TRX'){
         $model = PosTransaction::class;
+    }elseif($type == 'SPEND'){
+        $model = Spending::class;
     }else{
         return 00000;
     }
@@ -57,5 +60,15 @@ function formatAmount($amount) {
     }
     
     return $amount;
+}
+function checkNumber($number)
+{
+    if ($number > 0) {
+        return 1; // Bilangan positif
+    } elseif ($number < 0) {
+        return 0; // Bilangan negatif
+    } else {
+        return 1; // Bilangan nol
+    }
 }
 

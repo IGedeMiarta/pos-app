@@ -51,22 +51,88 @@
         </div>
 
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-3 border-warning">
+            <div
+                class="card radius-10 border-start border-0 border-3 {{ checkNumber($keuntungan) ? 'border-primary' : 'border-danger ' }} ">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Customers</p>
-                            <h4 class="my-1 text-warning">{{ $customer->count() }}</h4>
+                            <p class="mb-0 text-secondary">Keuntungan</p>
+                            <h4 class="my-1 text-primary">
+                                {{ checkNumber($keuntungan) ? '+' . rp($keuntungan) : '-' . rp($keuntungan) }}</h4>
                             <p class="mb-0 font-13">+0% from last week</p>
                         </div>
-                        <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
-                            <i class='bx bxs-group'></i>
+                        <div
+                            class="widgets-icons-2 rounded-circle  {{ checkNumber($keuntungan) ? 'bg-gradient-scooter' : 'bg-gradient-blooker ' }} text-white ms-auto">
+                            <i class='bx bx-transfer-alt'></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!--end row-->
+    {{-- <div class="row">
+        <div class="col-12 col-lg-8">
+            <div class="card radius-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h6 class="mb-0">Sales Overview</h6>
+                        </div>
+                        <div class="dropdown ms-auto">
+                            <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i
+                                    class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="javascript:;">Action</a>
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:;">Another action</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:;">Something else here</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="chart-container-0">
+                        <canvas id="chart7"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="card radius-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h6 class="mb-0">Order Status</h6>
+                        </div>
+                        <div class="dropdown ms-auto">
+                            <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i
+                                    class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="javascript:;">Action</a>
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:;">Another action</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="javascript:;">Something else here</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="chart-container-0">
+                        <canvas id="chart-order-status"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
     <!--end row-->
 
     {{-- <div class="row">

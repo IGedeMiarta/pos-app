@@ -17,6 +17,7 @@ class HomeController extends Controller
         $data['order'] = Order::where('status',1)->get();
         $data['pembelian'] = Transaction::where('type',"-")->sum('amount');
         $data['penjualan'] = Transaction::where('type',"+")->sum('amount');
+        $data['keuntungan'] = Transaction::where('type',"+")->sum('amount') - Transaction::where('type',"-")->sum('amount');
         return view('main.dashboard',$data);
      }
 }

@@ -16,7 +16,7 @@
     <!--end breadcrumb-->
 @endpush
 @section('content')
-    <form action="{{ url('pos') }}" method="POST" enctype="multipart/form-data" target="_blank">
+    <form action="{{ url('pos') }}" method="POST" id="pos" enctype="multipart/form-data" target="_blank">
         @csrf
         <div class="card">
             <div class="card-body row">
@@ -170,7 +170,17 @@
 
 @push('script')
     <script>
+        $(function() {
+            $('#pos').on('submit', function(e) {
+                e.preventDefault();
+                setTimeout(function() {
+                    window.location.reload();
+                }, 0);
+                this.submit();
+            });
+        });
         $(document).ready(function() {
+
             $('#btnProcess').on('click', function() {
 
                 $('.to').html($('#custName').val());

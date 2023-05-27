@@ -235,16 +235,11 @@
                     data: {
                         product_id: product_id,
                         qty: qty,
-                        ref: ref
+                        ref: ref,
+                        type: 'buy'
                     }, // Set form data
                     success: function(response) {
                         // Handle success response
-                        if (response.status == 0) {
-                            Toast.fire({
-                                text: response.msg,
-                                icon: "error"
-                            });
-                        }
                         reloadTable();
                         clearInp();
                         $('#btnSelect').attr('disabled', false);

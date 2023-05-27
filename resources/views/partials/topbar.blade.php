@@ -83,18 +83,23 @@
                       <img src="{{ asset('thame') }}/assets/images/avatars/avatar-2.png" class="user-img"
                           alt="user avatar">
                       <div class="user-info ps-3">
-                          <p class="user-name mb-0">Pauline Seitz</p>
+                          <p class="user-name mb-0">{{ auth()->user()->name }}</p>
                           <p class="designattion mb-0">Administrator</p>
                       </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                          <a class="dropdown-item" href="javascript:;"><i
-                                  class="bx bx-user"></i><span>Profile</span></a>
-                      </li>
-                      <li><a class="dropdown-item" href="javascript:;"><i
-                                  class='bx bx-log-out-circle'></i><span>Logout</span></a>
-                      </li>
+                      <form action="{{ url('logout') }}" method="POST">
+                          @csrf
+
+                          <li>
+                              <a class="dropdown-item" href="javascript:;"><i
+                                      class="bx bx-user"></i><span>Profile</span></a>
+                          </li>
+                          <li>
+                              <button class="dropdown-item" href="javascript:;"><i
+                                      class='bx bx-log-out-circle'></i><span>Logout</span></button>
+                          </li>
+                      </form>
                   </ul>
               </div>
           </nav>

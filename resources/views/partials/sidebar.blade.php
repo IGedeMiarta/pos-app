@@ -22,9 +22,17 @@
          <li class="menu-label">Program & Feature</li>
          <li>
              <a href="{{ url('pos') }}">
-                 <div class="parent-icon"><i class="bx bx-dollar-circle"></i></div>
+                 <div class="parent-icon"><i class='bx bx-cart'></i></i></div>
                  <div class="menu-title">
                      POS
+                 </div>
+             </a>
+         </li>
+         <li>
+             <a href="{{ url('spending') }}">
+                 <div class="parent-icon"><i class="bx bx-dollar-circle"></i></div>
+                 <div class="menu-title">
+                     Pengeluaran
                  </div>
              </a>
          </li>
