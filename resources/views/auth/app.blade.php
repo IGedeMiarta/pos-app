@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    <link rel="icon" href="{{ asset('thame') }}/assets/images/favicon-32x32.png" type="image/png" />
+    <link rel="icon" href="{{ asset('logo1.png') }}" type="image/png" />
+
     <!--plugins-->
     <link href="{{ asset('thame') }}/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
     <link href="{{ asset('thame') }}/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
@@ -20,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="{{ asset('thame') }}/assets/css/app.css" rel="stylesheet">
     <link href="{{ asset('thame') }}/assets/css/icons.css" rel="stylesheet">
-    <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+    <title>{{ $title ?? 'Login' }} - {{ env('APP_NAME') }}</title>
 </head>
 
 <body class="bg-login">
