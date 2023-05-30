@@ -281,7 +281,7 @@
                                 <td>{{ $item->product_quantity }}</td>
                                 <td>{{ $item->product_name }}</td>
                                 <td>{{ rp($item->product_price) }}</td>
-                                <td>{{ $item->kategori->category_name }}</td>
+                                <td>{{ $item->kategori->category_name ?? '-' }}</td>
 
                             </tr>
                         @endforeach
