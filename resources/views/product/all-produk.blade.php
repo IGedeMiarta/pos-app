@@ -49,7 +49,7 @@
                                 <td>{{ $item->product_code }}</td>
                                 <td>{{ $item->product_price }}</td>
                                 <td>{{ $item->product_quantity }}</td>
-                                <td>{{ $item->kategori->category_name }}</td>
+                                <td>{{ $item->kategori->category_name ?? '-' }}</td>
                                 <td>
                                     <form action="{{ url('produk/' . $item->id) }}" method="POST">
                                         @csrf
