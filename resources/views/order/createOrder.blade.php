@@ -239,6 +239,7 @@
                         type: 'buy'
                     }, // Set form data
                     success: function(response) {
+                        console.log(response);
                         // Handle success response
                         reloadTable();
                         clearInp();
